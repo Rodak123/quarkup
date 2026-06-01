@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing Web</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-text-50: #0a1109;
+        --color-text-100: #132112;
+        --color-text-200: #274323;
+        --color-text-300: #3a6435;
+        --color-text-400: #4e8646;
+        --color-text-500: #61a758;
+        --color-text-600: #81b979;
+        --color-text-700: #a0ca9b;
+        --color-text-800: #c0dcbc;
+        --color-text-900: #dfedde;
+        --color-text-950: #eff6ee;
+
+        --color-bg-50: #0c1009;
+        --color-bg-100: #182112;
+        --color-bg-200: #304224;
+        --color-bg-300: #486336;
+        --color-bg-400: #608448;
+        --color-bg-500: #78a45b;
+        --color-bg-600: #93b77b;
+        --color-bg-700: #aec99c;
+        --color-bg-800: #c9dbbd;
+        --color-bg-900: #e4edde;
+        --color-bg-950: #f2f6ef;
+
+        --color-primary-50: #0c1109;
+        --color-primary-100: #182211;
+        --color-primary-200: #2f4422;
+        --color-primary-300: #476633;
+        --color-primary-400: #5e8844;
+        --color-primary-500: #76aa55;
+        --color-primary-600: #91bb77;
+        --color-primary-700: #adcc99;
+        --color-primary-800: #c8ddbb;
+        --color-primary-900: #e4eedd;
+        --color-primary-950: #f1f6ee;
+
+        --color-secondary-50: #091109;
+        --color-secondary-100: #112213;
+        --color-secondary-200: #224426;
+        --color-secondary-300: #336638;
+        --color-secondary-400: #44884b;
+        --color-secondary-500: #55aa5e;
+        --color-secondary-600: #77bb7e;
+        --color-secondary-700: #99cc9e;
+        --color-secondary-800: #bbddbf;
+        --color-secondary-900: #ddeedf;
+        --color-secondary-950: #eef6ef;
+
+        --color-accent-50: #09110b;
+        --color-accent-100: #112216;
+        --color-accent-200: #22442c;
+        --color-accent-300: #336642;
+        --color-accent-400: #448859;
+        --color-accent-500: #55aa6f;
+        --color-accent-600: #77bb8c;
+        --color-accent-700: #99cca8;
+        --color-accent-800: #bbddc5;
+        --color-accent-900: #ddeee2;
+        --color-accent-950: #eef6f1;
+
+        --color-ui-bg: var(--color-bg-50);
+        --color-ui-text: var(--color-text-950);
+        --color-ui-border: var(--color-bg-200);
+      }
+
+      @layer base {
+        .light,
+        [data-theme='light'] {
+          --color-text-50: #eff6ee;
+          --color-text-100: #dfedde;
+          --color-text-200: #c0dcbc;
+          --color-text-300: #a0ca9b;
+          --color-text-400: #81b979;
+          --color-text-500: #61a758;
+          --color-text-600: #4e8646;
+          --color-text-700: #3a6435;
+          --color-text-800: #274323;
+          --color-text-900: #132112;
+          --color-text-950: #0a1109;
+
+          --color-bg-50: #f1f6ee;
+          --color-bg-100: #e4eedd;
+          --color-bg-200: #c9ddbb;
+          --color-bg-300: #adcc99;
+          --color-bg-400: #92bb77;
+          --color-bg-500: #77aa55;
+          --color-bg-600: #5f8844;
+          --color-bg-700: #476633;
+          --color-bg-800: #304422;
+          --color-bg-900: #182211;
+          --color-bg-950: #0c1109;
+
+          --color-primary-50: #f1f6ee;
+          --color-primary-100: #e4eedd;
+          --color-primary-200: #c8ddbb;
+          --color-primary-300: #adcc99;
+          --color-primary-400: #91bb77;
+          --color-primary-500: #76aa55;
+          --color-primary-600: #5e8844;
+          --color-primary-700: #476633;
+          --color-primary-800: #2f4422;
+          --color-primary-900: #182211;
+          --color-primary-950: #0c1109;
+
+          --color-secondary-50: #eef6ef;
+          --color-secondary-100: #ddeedf;
+          --color-secondary-200: #bbddbf;
+          --color-secondary-300: #99cc9e;
+          --color-secondary-400: #77bb7e;
+          --color-secondary-500: #55aa5e;
+          --color-secondary-600: #44884b;
+          --color-secondary-700: #336638;
+          --color-secondary-800: #224426;
+          --color-secondary-900: #112213;
+          --color-secondary-950: #091109;
+
+          --color-accent-50: #eef6f1;
+          --color-accent-100: #ddeee2;
+          --color-accent-200: #bbddc5;
+          --color-accent-300: #99cca8;
+          --color-accent-400: #77bb8c;
+          --color-accent-500: #55aa6f;
+          --color-accent-600: #448859;
+          --color-accent-700: #336642;
+          --color-accent-800: #22442c;
+          --color-accent-900: #112216;
+          --color-accent-950: #09110b;
+
+          --color-ui-border: var(--color-bg-200);
+          --color-ui-bg: var(--color-bg-50);
+          --color-ui-text: var(--color-text-950);
+        }
+
+        body {
+          @apply bg-ui-bg text-ui-text antialiased transition-colors duration-200;
+        }
+
+        /**
+        Body font
+        */
+        @font-face {
+          font-family: 'JetBrains Mono NerdFont';
+          src: url('/fonts/JetBrainsMonoNerdFont-Regular.ttf')
+            format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+
+        /**
+        Header/Title font
+        */
+        @font-face {
+          font-family: 'Didact Gothic';
+          src: url('/fonts/DidactGothic-Regular.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+
+        body {
+          font-family: 'JetBrains Mono NerdFont', monospace;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          font-family: 'Didact Gothic', sans-serif;
+        }
+
+        /* rehype-pretty-code */
+        figure[data-rehype-pretty-code-figure] {
+          @apply my-8 flex justify-center;
+        }
+
+        pre {
+          @apply w-full max-w-3xl overflow-x-auto rounded-xl border border-ui-border py-4 shadow-lg;
+        }
+
+        code {
+          @apply block min-w-full text-sm leading-6;
+          counter-reset: line;
+        }
+
+        code > [data-line] {
+          @apply border-l-4 border-l-transparent px-4;
+        }
+
+        code > [data-line]::before {
+          counter-increment: line;
+          content: counter(line);
+          @apply mr-6 inline-block w-4 text-right text-text-400 opacity-50;
+        }
+
+        code > [data-highlighted-line] {
+          @apply border-l-primary-500 bg-primary-500/10;
+        }
+
+        :not(pre) > code {
+          @apply rounded bg-bg-200 px-1.5 py-0.5 text-secondary-600;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="main" class="p-4"></div>
+    <button class="absolute right-12 bottom-12" id="toggle-theme-btn">Toggle Theme</button>
+    <script src="script.js"></script>
+  </body>
+</html>
