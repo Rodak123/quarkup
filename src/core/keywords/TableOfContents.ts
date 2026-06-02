@@ -32,16 +32,25 @@ export class TableOfContents extends WritedownKeywordDefinition<
   _use(options: TableOfContentsOptions, tree: Root): WritedownResult {
     const result = toc(tree, {
       maxDepth: options.maxDepth,
-      tight: true,
     });
 
     if (result.map === undefined) {
       return null;
     }
 
+    const contentsList = result.map;
+
+    contentsList.data = {
+      ...contentsList.data,
+      hProperties: {
+        ...contentsList.data?.hProperties,
+        'data-toc': true,
+      },
+    };
+
     return {
       type: 'block',
-      value: [result.map],
+      value: [contentsList],
     };
   }
 }

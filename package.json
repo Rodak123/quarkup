@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@shikijs/transformers": "^4.1.0",
+    "@types/mdast": "^4.0.4",
     "commander": "^15.0.0",
     "mdast": "^2.3.2",
     "mdast-util-toc": "^7.1.0",

@@ -142,13 +142,7 @@
           --color-ui-text: var(--color-text-950);
         }
 
-        body {
-          @apply bg-ui-bg text-ui-text antialiased transition-colors duration-200;
-        }
-
-        /**
-        Body font
-        */
+        /* Body font */
         @font-face {
           font-family: 'JetBrains Mono NerdFont';
           src: url('/fonts/JetBrainsMonoNerdFont-Regular.ttf')
@@ -158,9 +152,7 @@
           font-display: swap;
         }
 
-        /**
-        Header/Title font
-        */
+        /* Header/Title font */
         @font-face {
           font-family: 'Didact Gothic';
           src: url('/fonts/DidactGothic-Regular.ttf') format('truetype');
@@ -170,9 +162,11 @@
         }
 
         body {
+          @apply bg-ui-bg text-ui-text antialiased transition-colors duration-200;
           font-family: 'JetBrains Mono NerdFont', monospace;
         }
 
+        /* Typography */
         h1,
         h2,
         h3,
@@ -180,56 +174,113 @@
         h5,
         h6 {
           font-family: 'Didact Gothic', sans-serif;
-          @apply my-2;
+          @apply font-extrabold tracking-tight leading-tight my-2;
+
+          & + p {
+            @apply mt-4;
+          }
+        }
+
+        h1 {
+          @apply text-7xl;
+        }
+        h2 {
+          @apply text-4xl;
+        }
+        h3,
+        h4,
+        h5,
+        h6 {
+          @apply text-3xl;
+        }
+        p {
+          @apply font-normal leading-relaxed;
+        }
+
+        /* Links */
+        a {
+          @apply relative font-bold no-underline transition-colors duration-300 inline-block;
+          color: var(--color-ui-text);
+
+          &::before {
+            content: '';
+            @apply absolute bottom-0.5 left-0 -z-10 w-full h-2 transition-all duration-300 ease-in-out;
+            background-color: var(--color-accent-400);
+            opacity: 0.6;
+          }
+
+          &:hover::before {
+            @apply bottom-0 h-full opacity-80;
+          }
         }
 
         /* rehype-pretty-code */
         figure[data-rehype-pretty-code-figure] {
           @apply my-8 flex justify-center;
+
+          pre {
+            @apply w-full max-w-3xl overflow-x-auto rounded-xl border border-ui-border py-4 shadow-lg;
+          }
+          code {
+            @apply inline-block text-sm leading-6;
+            counter-reset: line;
+
+            & > [data-line] {
+              @apply border-l-4 border-l-transparent px-4;
+              &::before {
+                counter-increment: line;
+                content: counter(line);
+                @apply mr-6 inline-block w-4 text-right text-text-400 opacity-50;
+              }
+            }
+            & > [data-highlighted-line] {
+              @apply border-l-primary-500 bg-primary-500/10;
+            }
+          }
         }
 
-        figure[data-rehype-pretty-code-figure] pre {
-          @apply w-full max-w-3xl overflow-x-auto rounded-xl border border-ui-border py-4 shadow-lg;
-        }
-
-        figure[data-rehype-pretty-code-figure] code {
-          @apply inline-block text-sm leading-6;
-          counter-reset: line;
-        }
-
-        figure[data-rehype-pretty-code-figure] code > [data-line] {
-          @apply border-l-4 border-l-transparent px-4;
-        }
-
-        figure[data-rehype-pretty-code-figure] code > [data-line]::before {
-          counter-increment: line;
-          content: counter(line);
-          @apply mr-6 inline-block w-4 text-right text-text-400 opacity-50;
-        }
-
-        figure[data-rehype-pretty-code-figure] code > [data-highlighted-line] {
-          @apply border-l-primary-500 bg-primary-500/10;
-        }
-
-        :not(pre) > code {
-          @apply rounded bg-bg-200 px-1.5 py-0.5 text-secondary-600;
+        /* Inline code blocks */
+        :not(pre) > code,
+        mjx-container {
+          @apply inline-block rounded bg-bg-200 px-1.5 py-0.5 text-secondary-600 transition-colors duration-200;
         }
 
         /* rehype-mathjax */
-        mjx-container {
-          @apply inline-block text-ui-text transition-colors duration-200 rounded bg-bg-200 px-1.5 py-0.5 text-secondary-600;
-          outline: 0;
-          vertical-align: middle;
-          margin: 0 !important;
-        }
-
         figure[data-math-block] {
           @apply my-8 flex justify-center;
+          mjx-container {
+            @apply flex! w-full max-w-3xl justify-center overflow-x-auto rounded-xl border border-ui-border py-4 shadow-lg;
+          }
         }
 
-        figure[data-math-block] mjx-container {
-          @apply w-full max-w-3xl justify-center overflow-x-auto rounded-xl border border-ui-border py-4 shadow-lg;
-          display: flex !important;
+        /* Table of Contents */
+        ul[data-toc] {
+          @apply my-6 max-w-xs rounded-xl border border-ui-border bg-bg-100 p-6 shadow-sm list-none;
+
+          li {
+            @apply relative my-1;
+          }
+
+          /* reset custom link here */
+          a {
+            @apply block rounded-md px-2 py-1 text-sm text-text-400 hover:bg-primary-500/10 hover:text-primary-500;
+            &::before {
+              display: none;
+            }
+          }
+
+          ul {
+            @apply mt-1 ml-4 border-l border-ui-border pl-2 list-none;
+          }
+
+          & > li > p > a {
+            @apply font-bold text-text-950;
+          }
+        }
+
+        /* Writedown errors */
+        *[data-writedown-error] {
+          @apply block p-4 my-2 bg-red-800 rounded overflow-x-auto max-w-screen;
         }
       }
     </style>

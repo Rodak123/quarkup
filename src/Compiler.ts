@@ -9,7 +9,6 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax/svg';
 
-import { rehypeTailwindStyles } from './plugins/rehypeTailwindStyles.ts';
 import { rehypeMathjaxFigure } from './plugins/rehypeMathjaxFigure.ts';
 import { remarkWritedown } from './plugins/remarkWritedown.ts';
 
@@ -54,8 +53,6 @@ export class Compiler {
         theme: 'github-dark-dimmed',
         grid: true,
       }) // render code
-
-      .use(rehypeTailwindStyles) // style with tailwind
 
       .use(rehypeStringify) // to HTML text
 

@@ -1,6 +1,6 @@
 # Writedown
 
-A simple markdown extension that compiles markdown into tailwind html
+A simple markdown extension that compiles markdown into tailwind styled html
 
 ## Example
 

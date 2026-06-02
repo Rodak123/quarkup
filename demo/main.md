@@ -10,17 +10,13 @@ and the smallest planet in the Solar System.
 ##### h5 Heading
 ###### h6 Heading
 
+## Fails
+
+&bombo:test{2}&
+
 ## Contents
 
-&tableofcontents:maxDepth{4}&
-
-## Other contents
-
-Some text with and inline &tableofcontents:maxDepth{2}& TOS like such.
-
-## Double TOS
-
-First are &tableofcontents&, second are &tableofcontents&.
+&tableofcontents:maxDepth{2}&
 
 ## Code
 
@@ -42,6 +38,10 @@ function hello() {
   console.log('new line')
 }
 ```
+
+## Links
+
+Go [Here](#math) and [There](https://example.com).
 
 ## Highlighting
 

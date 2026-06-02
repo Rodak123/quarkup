@@ -3,6 +3,7 @@ import type { Plugin } from 'unified';
 import type { Root, Paragraph, PhrasingContent, BlockContent } from 'mdast';
 import {
   matchWritedown,
+  type WritedownKeyword,
   type WritedownConfig,
 } from '../core/matchWritedown.ts';
 import type { IWritedownKeywordDefinition } from '../core/WritedownKeywordDefinition.ts';
@@ -44,6 +45,34 @@ export const remarkWritedown: Plugin<[RemarkWritedownOptions?], Root> = (
         }
       };
 
+      const raiseError = (keyword: WritedownKeyword, message: string) => {
+        flushPhrasing();
+        newBlocks.push({
+          type: 'paragraph',
+          children: [
+            {
+              type: 'strong',
+              children: [
+                {
+                  type: 'text',
+                  value: keyword.name,
+                },
+              ],
+            },
+            { type: 'text', value: ' raised error: ' },
+            {
+              type: 'emphasis',
+              children: [{ type: 'text', value: message }],
+            },
+          ],
+          data: {
+            hProperties: {
+              'data-writedown-error': true,
+            },
+          },
+        });
+      };
+
       for (const child of node.children) {
         if (child.type !== 'text') {
           currentPhrasing.push(child);
@@ -70,19 +99,13 @@ export const remarkWritedown: Plugin<[RemarkWritedownOptions?], Root> = (
           const definition = keywordDefinitionMap[keyword.name];
 
           if (!definition) {
-            currentPhrasing.push({
-              type: 'text',
-              value: `Unknown keyword: "${keyword.name}"`,
-            });
+            raiseError(keyword, `Unknown keyword: "${keyword.name}"`);
           } else {
             try {
               const result = definition.use(tree, keyword.options);
 
               if (result === null) {
-                currentPhrasing.push({
-                  type: 'text',
-                  value: `Failed to use: "${keyword.name}"`,
-                });
+                raiseError(keyword, `Failed to use: "${keyword.name}"`);
               } else if (result.type === 'phrasing') {
                 currentPhrasing.push(...result.value);
               } else if (result.type === 'block') {
@@ -90,10 +113,10 @@ export const remarkWritedown: Plugin<[RemarkWritedownOptions?], Root> = (
                 newBlocks.push(...result.value);
               }
             } catch (err) {
-              currentPhrasing.push({
-                type: 'text',
-                value: `Failed to use: "${keyword.name}", error: ${err}`,
-              });
+              raiseError(
+                keyword,
+                `Failed to use: "${keyword.name}", error: ${err}`,
+              );
             }
           }
           lastIndex = keyword.end;
