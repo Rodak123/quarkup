@@ -2,13 +2,14 @@
 
 import { Command } from 'commander';
 import { compileMultipleProjects, compileSingleProject } from './actions.ts';
+import packageJson from '../package.json' with { type: 'json' };
 
 const program = new Command();
 
 program
   .name('quarkup')
   .description('A simple markdown to HTML compiler')
-  .version('1.0.0');
+  .version(packageJson.version);
 
 program
   .command('s')
