@@ -11,6 +11,7 @@ import rehypeMathjax from 'rehype-mathjax/svg';
 
 import { rehypeMathjaxFigure } from './plugins/rehypeMathjaxFigure.ts';
 import { remarkWritedown } from './plugins/remarkWritedown.ts';
+import rehypeSlug from 'rehype-slug';
 
 export class Compiler {
   _sourceFile: string;
@@ -46,6 +47,7 @@ export class Compiler {
 
       .use(remarkRehype) // MD to HTML
 
+      .use(rehypeSlug) // Add id to headings
       .use(rehypeMathjax) // render math
       .use(rehypeMathjaxFigure) // wrap math in <figure>
 
