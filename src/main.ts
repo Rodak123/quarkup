@@ -1,8 +1,8 @@
 import { Command } from 'commander';
 import path from 'path';
 import fs from 'fs';
-import { Compiler } from './core/Compiler.ts';
-import { Stopwatch } from './core/Stopwatch.ts';
+import { Compiler } from './Compiler.ts';
+import { Stopwatch } from './utils/Stopwatch.ts';
 
 const program = new Command();
 

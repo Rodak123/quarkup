@@ -6,7 +6,12 @@ import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypePrettyCode from 'rehype-pretty-code';
-import { tailwindPlugin } from './tailwindPlugin.ts';
+import remarkMath from 'remark-math';
+import rehypeMathjax from 'rehype-mathjax/svg';
+
+import { rehypeTailwindStyles } from './plugins/rehypeTailwindStyles.ts';
+import { rehypeMathjaxFigure } from './plugins/rehypeMathjaxFigure.ts';
+import { remarkWritedown } from './plugins/remarkWritedown.ts';
 
 export class Compiler {
   _sourceFile: string;
@@ -35,15 +40,25 @@ export class Compiler {
     const source = this._readContents(this._sourceFile);
 
     const outputVFile = await unified()
-      .use(remarkParse)
-      .use(remarkGfm)
-      .use(remarkRehype)
+      .use(remarkParse) // to MD AST
+      .use(remarkMath) // parse math
+      .use(remarkGfm) // parse Github FM
+      .use(remarkWritedown) // parse custom Writedown syntax
+
+      .use(remarkRehype) // MD to HTML
+
+      .use(rehypeMathjax) // render math
+      .use(rehypeMathjaxFigure) // wrap math in <figure>
+
       .use(rehypePrettyCode, {
         theme: 'github-dark-dimmed',
         grid: true,
-      })
-      .use(tailwindPlugin)
-      .use(rehypeStringify)
+      }) // render code
+
+      .use(rehypeTailwindStyles) // style with tailwind
+
+      .use(rehypeStringify) // to HTML text
+
       .process(source);
     const output = String(outputVFile);
 

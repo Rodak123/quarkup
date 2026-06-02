@@ -180,6 +180,7 @@
         h5,
         h6 {
           font-family: 'Didact Gothic', sans-serif;
+          @apply my-2;
         }
 
         /* rehype-pretty-code */
@@ -187,31 +188,48 @@
           @apply my-8 flex justify-center;
         }
 
-        pre {
+        figure[data-rehype-pretty-code-figure] pre {
           @apply w-full max-w-3xl overflow-x-auto rounded-xl border border-ui-border py-4 shadow-lg;
         }
 
-        code {
-          @apply block min-w-full text-sm leading-6;
+        figure[data-rehype-pretty-code-figure] code {
+          @apply inline-block text-sm leading-6;
           counter-reset: line;
         }
 
-        code > [data-line] {
+        figure[data-rehype-pretty-code-figure] code > [data-line] {
           @apply border-l-4 border-l-transparent px-4;
         }
 
-        code > [data-line]::before {
+        figure[data-rehype-pretty-code-figure] code > [data-line]::before {
           counter-increment: line;
           content: counter(line);
           @apply mr-6 inline-block w-4 text-right text-text-400 opacity-50;
         }
 
-        code > [data-highlighted-line] {
+        figure[data-rehype-pretty-code-figure] code > [data-highlighted-line] {
           @apply border-l-primary-500 bg-primary-500/10;
         }
 
         :not(pre) > code {
           @apply rounded bg-bg-200 px-1.5 py-0.5 text-secondary-600;
+        }
+
+        /* rehype-mathjax */
+        mjx-container {
+          @apply inline-block text-ui-text transition-colors duration-200 rounded bg-bg-200 px-1.5 py-0.5 text-secondary-600;
+          outline: 0;
+          vertical-align: middle;
+          margin: 0 !important;
+        }
+
+        figure[data-math-block] {
+          @apply my-8 flex justify-center;
+        }
+
+        figure[data-math-block] mjx-container {
+          @apply w-full max-w-3xl justify-center overflow-x-auto rounded-xl border border-ui-border py-4 shadow-lg;
+          display: flex !important;
         }
       }
     </style>
@@ -219,7 +237,9 @@
 
   <body>
     <div id="main" class="p-4"></div>
-    <button class="absolute right-12 bottom-12" id="toggle-theme-btn">Toggle Theme</button>
+    <button class="fixed right-12 bottom-12" id="toggle-theme-btn">
+      Toggle Theme
+    </button>
     <script src="script.js"></script>
   </body>
 </html>
