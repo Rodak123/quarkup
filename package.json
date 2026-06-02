@@ -3,6 +3,15 @@
   "version": "0.0.1",
   "description": "A markdown extension",
   "author": "Radek Titěra",
+  "license": "MIT",
+  "keywords": [
+    "markdown"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rodak123/quarkup.git"
+  },
+  "type": "module",
   "main": "src/main.ts",
   "bin": {
     "quarkup": "./dist/main.js"
@@ -15,10 +24,6 @@
     "build": "tsup src/main.ts --format esm --clean --minify --shims",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [
-    "markdown"
-  ],
-  "type": "module",
   "devDependencies": {
     "@types/node": "^24.12.4",
     "eslint": "^9.39.1",

@@ -2,7 +2,7 @@
 
 A simple markdown extension that compiles markdown into tailwind styled html
 
-## Important
+## Disclaimer
 
 This package is still work in progress.
 
