@@ -35,7 +35,7 @@ export class Compiler {
   }
 
   async compile() {
-    console.log('Compiling');
+    console.log(`Compiling ${this._sourceFile} to ${this._outputDir}`);
 
     const source = this._readContents(this._sourceFile);
 

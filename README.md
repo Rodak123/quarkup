@@ -1,18 +1,30 @@
 # Quarkup
 
-A simple markdown extension that compiles markdown into tailwind styled html
+A simple markdown extension that compiles markdown into tailwind styled html.
 
 ## Disclaimer
 
-This package is still work in progress.
+This package and documentation is still work in progress.
 
-## Example
+## Contents
 
-Compile `demo/main.md` into `test-web/html/`.
+- [Quarkup](#quarkup)
+  - [Disclaimer](#disclaimer)
+  - [Contents](#contents)
+  - [Usage](#usage)
+    - [Examples](#examples)
+  - [Features](#features)
+  - [Custom Syntax](#custom-syntax)
+    - [Table of Contents](#table-of-contents)
 
-```sh
-node src/main.ts c demo/main.md -o test-web/html
-```
+## Usage
+
+`npx quarkup [options] [command]`
+
+### Examples
+
+- [Compile single project](./examples/single/README.md)
+- [Compile multiple projects](./examples/single/README.md)
 
 ## Features
 
@@ -35,6 +47,11 @@ $keyword:optionA{value}:optionB{value}&
 
 the keyword (`$`) and option (`:`) marks can be configured.
 
-### Supported Keywords
+### Table of Contents
 
-- `$tableofcontents:maxDepth{1-6 [default: 6]}$` - Creates a table of contents
+Example: `$tableofcontents:maxDepth{1-6 [default: 6]}$`
+
+Keyword: `tableofcontents`
+
+Options:
+- `maxDepth` - 1 up to 6 (default is 6) # Highest acceptable heading

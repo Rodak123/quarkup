@@ -1,8 +1,7 @@
 node_modules/
 test/
 docs/
+examples/
 .git/
 .env
 .gitignore
-demo/
-test-web/
