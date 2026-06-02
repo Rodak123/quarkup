@@ -1,19 +1,29 @@
 {
-  "name": "writedown",
-  "version": "1.0.0",
+  "name": "quarkup",
+  "version": "0.0.1",
   "description": "A markdown extension",
-  "main": "src/main.ts",
-  "scripts": {
-    "cli": "node src/main.ts",
-    "lint": "eslint ."
-  },
-  "keywords": [],
   "author": "Radek Titěra",
+  "main": "src/main.ts",
+  "bin": {
+    "quarkup": "./dist/main.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "build": "tsup src/main.ts --format esm --clean --minify --shims",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "markdown"
+  ],
   "type": "module",
   "devDependencies": {
     "@types/node": "^24.12.4",
     "eslint": "^9.39.1",
     "tailwindcss": "^4.1.18",
+    "tsup": "^8.5.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4"
   },

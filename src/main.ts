@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { Command } from 'commander';
 import path from 'path';
 import fs from 'fs';
@@ -6,7 +8,10 @@ import { Stopwatch } from './utils/Stopwatch.ts';
 
 const program = new Command();
 
-program.name('writedown').description('A markdown expansion').version('1.0.0');
+program
+  .name('quarkup')
+  .description('A simple markdown to HTML compiler')
+  .version('1.0.0');
 
 program
   .command('c')
