@@ -19,7 +19,7 @@ This package and documentation is still work in progress.
 
 ## Usage
 
-`npx quarkup [options] [command]`
+`npx quarkup s|m [options] [command]`
 
 ### Examples
 
