@@ -12,6 +12,7 @@ import rehypeMathjax from 'rehype-mathjax/svg';
 import { rehypeMathjaxFigure } from './plugins/rehypeMathjaxFigure.ts';
 import { remarkWritedown } from './plugins/remarkWritedown.ts';
 import rehypeSlug from 'rehype-slug';
+import { customGetHighlighter } from './utils/customGetHighlighter.ts';
 
 export class Compiler {
   _sourceFile: string;
@@ -54,6 +55,7 @@ export class Compiler {
       .use(rehypePrettyCode, {
         theme: 'github-dark-dimmed',
         grid: true,
+        getHighlighter: customGetHighlighter,
       }) // render code
 
       .use(rehypeStringify) // to HTML text
