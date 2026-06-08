@@ -16,22 +16,25 @@ export abstract class QuarkupKeywordDefinition<
   _name: string;
   _optionsSchema: ZodObject<T>;
 
-  constructor(name: string, optionsSchema: ZodObject<T>) {
+  protected constructor(name: string, optionsSchema: ZodObject<T>) {
     this._name = name;
     this._optionsSchema = optionsSchema;
   }
 
-  abstract _use(options: z.infer<ZodObject<T>>, tree: Root): QuarkupResult;
+  protected abstract _use(
+    options: z.infer<ZodObject<T>>,
+    tree: Root,
+  ): QuarkupResult;
 
-  get name() {
+  public get name() {
     return this._name;
   }
 
-  get options() {
+  public get options() {
     return this._optionsSchema;
   }
 
-  use(tree: Root, rawOptions: QuarkupOption[]): QuarkupResult {
+  public use(tree: Root, rawOptions: QuarkupOption[]): QuarkupResult {
     const constructedOptions: Record<string, string> = {};
     for (const option of rawOptions) {
       constructedOptions[option.name] = option.value;

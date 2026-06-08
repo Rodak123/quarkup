@@ -15,15 +15,15 @@ import rehypeSlug from 'rehype-slug';
 import { customGetHighlighter } from './utils/customGetHighlighter.ts';
 
 export class Compiler {
-  _sourceFile: string;
-  _outputDir: string;
+  private _sourceFile: string;
+  private _outputDir: string;
 
-  constructor(sourceFile: string, outputDir: string) {
+  public constructor(sourceFile: string, outputDir: string) {
     this._sourceFile = sourceFile;
     this._outputDir = outputDir;
   }
 
-  _readContents(filePath: string) {
+  private _readContents(filePath: string) {
     if (!fs.existsSync(filePath)) {
       throw new Error(`File "${filePath}" doesn't exist`);
     }
@@ -31,11 +31,11 @@ export class Compiler {
     return fs.readFileSync(filePath).toString();
   }
 
-  _writeContents(filePath: string, contents: string) {
+  private _writeContents(filePath: string, contents: string) {
     fs.writeFileSync(filePath, contents);
   }
 
-  async compile() {
+  public async compile() {
     console.log(`Compiling ${this._sourceFile} to ${this._outputDir}`);
 
     const source = this._readContents(this._sourceFile);

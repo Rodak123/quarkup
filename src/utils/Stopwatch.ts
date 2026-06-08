@@ -1,23 +1,23 @@
 export class Stopwatch {
-  _start: bigint | null = null;
-  _end: bigint | null = null;
+  private _start: bigint | null = null;
+  private _end: bigint | null = null;
 
-  start() {
+  public start() {
     this._start = process.hrtime.bigint();
   }
 
-  stop() {
+  public stop() {
     if (this._start === null) {
       throw new Error('Must start before stopping');
     }
     this._end = process.hrtime.bigint();
   }
 
-  get secondsElapsed() {
+  public get secondsElapsed() {
     return this.millisecondsElapsed / 1_000;
   }
 
-  get millisecondsElapsed() {
+  public get millisecondsElapsed() {
     if (this._start === null || this._end === null) {
       throw new Error('Must be started and stopped');
     }

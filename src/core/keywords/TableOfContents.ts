@@ -25,11 +25,11 @@ type TableOfContentsOptions = z.infer<typeof TableOfContentsSchema>;
 export class TableOfContents extends QuarkupKeywordDefinition<
   typeof TableOfContentsSchema.shape
 > {
-  constructor() {
+  public constructor() {
     super('tableofcontents', TableOfContentsSchema);
   }
 
-  _use(options: TableOfContentsOptions, tree: Root): QuarkupResult {
+  protected _use(options: TableOfContentsOptions, tree: Root): QuarkupResult {
     const result = toc(tree, {
       maxDepth: options.maxDepth,
     });
