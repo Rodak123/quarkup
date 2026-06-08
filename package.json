@@ -22,7 +22,8 @@
   "scripts": {
     "lint": "eslint .",
     "build": "tsup src/main.ts --format esm --clean --minify --shims",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "echo Tests are TDB"
   },
   "devDependencies": {
     "@types/node": "^24.12.4",
