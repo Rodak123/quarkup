@@ -10,7 +10,7 @@ import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax/svg';
 
 import { rehypeMathjaxFigure } from './plugins/rehypeMathjaxFigure.ts';
-import { remarkWritedown } from './plugins/remarkWritedown.ts';
+import { remarkQuarkup } from './plugins/remarkQuarkup.ts';
 import rehypeSlug from 'rehype-slug';
 import { customGetHighlighter } from './utils/customGetHighlighter.ts';
 
@@ -44,7 +44,7 @@ export class Compiler {
       .use(remarkParse) // to MD AST
       .use(remarkMath) // parse math
       .use(remarkGfm) // parse Github FM
-      .use(remarkWritedown) // parse custom Writedown syntax
+      .use(remarkQuarkup) // parse custom Quarkup syntax
 
       .use(remarkRehype) // MD to HTML
 

@@ -39,7 +39,7 @@ This package and documentation is still work in progress.
 
 ## Custom Syntax
 
-Writedown uses keywords with options:
+Quarkup uses keywords with options:
 
 ```md
 $keyword:optionA{value}:optionB{value}&

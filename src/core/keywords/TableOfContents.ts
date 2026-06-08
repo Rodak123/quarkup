@@ -1,8 +1,8 @@
 import { toc } from 'mdast-util-toc';
-import { WritedownKeywordDefinition } from '../WritedownKeywordDefinition.ts';
+import { QuarkupKeywordDefinition } from '../QuarkupKeywordDefinition.ts';
 import type { Root } from 'mdast';
 import { z } from 'zod';
-import type { WritedownResult } from '../writedownResult.ts';
+import type { QuarkupResult } from '../types/quarkupResult.ts';
 
 const TableOfContentsSchema = z.object({
   maxDepth: z
@@ -22,14 +22,14 @@ const TableOfContentsSchema = z.object({
 
 type TableOfContentsOptions = z.infer<typeof TableOfContentsSchema>;
 
-export class TableOfContents extends WritedownKeywordDefinition<
+export class TableOfContents extends QuarkupKeywordDefinition<
   typeof TableOfContentsSchema.shape
 > {
   constructor() {
     super('tableofcontents', TableOfContentsSchema);
   }
 
-  _use(options: TableOfContentsOptions, tree: Root): WritedownResult {
+  _use(options: TableOfContentsOptions, tree: Root): QuarkupResult {
     const result = toc(tree, {
       maxDepth: options.maxDepth,
     });

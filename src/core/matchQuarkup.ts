@@ -1,34 +1,23 @@
-export interface WritedownConfig {
-  keywordMark: string;
-  optionMark: string;
-}
-
-export interface WritedownOption {
-  name: string;
-  value: string;
-}
-
-export interface WritedownKeyword {
-  name: string;
-  options: WritedownOption[];
-  start: number;
-  end: number;
-}
+import type {
+  QuarkupConfig,
+  QuarkupKeyword,
+  QuarkupOption,
+} from './types/quarkupSyntax.ts';
 
 const keywordRegex = /([a-zA-Z]+)/;
 const optionNameRegex = /([a-zA-Z]+)/;
 const optionValueRegex = /\{([^}]+)\}/;
 
-export const matchWritedown = (
-  config: WritedownConfig,
+export const matchQuarkup = (
+  config: QuarkupConfig,
   text: string,
-): WritedownKeyword[] => {
+): QuarkupKeyword[] => {
   const writedownRegex = new RegExp(
     `${config.keywordMark}${keywordRegex.source}((?:${config.optionMark}${optionNameRegex.source}${optionValueRegex.source})*)${config.keywordMark}`,
     'g',
   );
 
-  const keywords: WritedownKeyword[] = [];
+  const keywords: QuarkupKeyword[] = [];
 
   const matches = text.matchAll(writedownRegex);
 
@@ -38,7 +27,7 @@ export const matchWritedown = (
     const start = match.index!;
     const end = start + fullMatch.length;
 
-    const options: WritedownOption[] = [];
+    const options: QuarkupOption[] = [];
 
     const paramRegex = new RegExp(
       `${config.optionMark}${optionNameRegex.source}${optionValueRegex.source}`,

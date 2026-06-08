@@ -1,28 +1,28 @@
 import { visit } from 'unist-util-visit';
 import type { Plugin } from 'unified';
 import type { Root, Paragraph, PhrasingContent, BlockContent } from 'mdast';
-import {
-  matchWritedown,
-  type WritedownKeyword,
-  type WritedownConfig,
-} from '../core/matchWritedown.ts';
-import type { IWritedownKeywordDefinition } from '../core/WritedownKeywordDefinition.ts';
+import { matchQuarkup } from '../core/matchQuarkup.ts';
+import type { IQuarkupKeywordDefinition } from '../core/QuarkupKeywordDefinition.ts';
 import { TableOfContents } from '../core/keywords/TableOfContents.ts';
+import type {
+  QuarkupConfig,
+  QuarkupKeyword,
+} from '../core/types/quarkupSyntax.ts';
 
-export interface RemarkWritedownOptions {
-  config: WritedownConfig;
+export interface RemarkQuarkupOptions {
+  config: QuarkupConfig;
 }
 
-export const remarkWritedown: Plugin<[RemarkWritedownOptions?], Root> = (
+export const remarkQuarkup: Plugin<[RemarkQuarkupOptions?], Root> = (
   options = { config: { keywordMark: '&', optionMark: ':' } },
 ) => {
   const { config } = options;
 
-  const keywordDefinitions: IWritedownKeywordDefinition[] = [
+  const keywordDefinitions: IQuarkupKeywordDefinition[] = [
     new TableOfContents(),
   ];
 
-  const keywordDefinitionMap: Record<string, IWritedownKeywordDefinition> = {};
+  const keywordDefinitionMap: Record<string, IQuarkupKeywordDefinition> = {};
   for (const keywordDefinition of keywordDefinitions) {
     keywordDefinitionMap[keywordDefinition.name] = keywordDefinition;
   }
@@ -45,7 +45,7 @@ export const remarkWritedown: Plugin<[RemarkWritedownOptions?], Root> = (
         }
       };
 
-      const raiseError = (keyword: WritedownKeyword, message: string) => {
+      const raiseError = (keyword: QuarkupKeyword, message: string) => {
         flushPhrasing();
         newBlocks.push({
           type: 'paragraph',
@@ -79,7 +79,7 @@ export const remarkWritedown: Plugin<[RemarkWritedownOptions?], Root> = (
           continue;
         }
 
-        const keywords = matchWritedown(config, child.value);
+        const keywords = matchQuarkup(config, child.value);
         if (keywords.length === 0) {
           currentPhrasing.push(child);
           continue;

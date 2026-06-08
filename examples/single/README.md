@@ -2,7 +2,7 @@
 
 [Back](../../README.md)
 
-Command: `s ./main.md -o ./test-web/html`
+Command: `s ./examples/single/main.md -o ./examples/single/test-web/html`
 
 Converts the source markdown file into html and saves it into the
 output folder as `<output>/index.html`
