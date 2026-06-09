@@ -2,6 +2,8 @@
 
 A simple markdown extension that compiles markdown into tailwind styled html.
 
+![Quarkup Banner](docs/quarkup-banner.png)
+
 ## Disclaimer
 
 This package and documentation is still work in progress.
