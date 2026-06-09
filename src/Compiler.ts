@@ -12,7 +12,7 @@ import rehypeMathjax from 'rehype-mathjax/svg';
 import { rehypeMathjaxFigure } from './plugins/rehypeMathjaxFigure.ts';
 import { remarkQuarkup } from './plugins/remarkQuarkup.ts';
 import rehypeSlug from 'rehype-slug';
-import { customGetHighlighter } from './utils/customGetHighlighter.ts';
+import { customGetHighlighter } from './plugins/rehypePrettyCode/customGetHighlighter.ts';
 
 export class Compiler {
   private _sourceFile: string;

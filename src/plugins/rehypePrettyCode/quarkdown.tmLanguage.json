@@ -1,0 +1,39 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Quarkdown",
+  "scopeName": "source.quarkdown",
+  "patterns": [
+    { "include": "#commands" },
+    { "include": "#attributes" },
+    { "include": "#blocks" }
+  ],
+  "repository": {
+    "commands": {
+      "match": "\\B\\.([a-zA-Z0-9_-]+)\\b",
+      "name": "keyword.control.quarkdown"
+    },
+    "attributes": {
+      "match": "\\b([a-zA-Z0-9_-]+):",
+      "captures": {
+        "1": { "name": "entity.other.attribute-name.quarkdown" }
+      }
+    },
+    "blocks": {
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.block.begin.quarkdown" }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.block.end.quarkdown" }
+      },
+      "name": "string.unquoted.quarkdown",
+      "patterns": [
+        {
+          "match": "\\B\\.([a-zA-Z0-9_-]+)\\b",
+          "name": "variable.language.quarkdown"
+        }
+      ]
+    }
+  }
+}

@@ -39,6 +39,38 @@ and the smallest planet in the Solar System.</p>
 <span data-line="" data-highlighted-line=""><span style="color:#ADBAC7">  console.</span><span style="color:#DCBDFB">log</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">'old line'</span><span style="color:#ADBAC7">)</span></span>
 <span data-line="" data-highlighted-line=""><span style="color:#ADBAC7">  console.</span><span style="color:#DCBDFB">log</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">'new line'</span><span style="color:#ADBAC7">)</span></span>
 <span data-line=""><span style="color:#ADBAC7">}</span></span></code></pre></figure>
+<p>Custom quarkdown language:</p>
+<figure data-rehype-pretty-code-figure=""><pre style="background-color:#22272e;color:#adbac7" tabindex="0" data-language="quarkdown" data-theme="github-dark-dimmed"><code data-language="quarkdown" data-theme="github-dark-dimmed" style="display: grid;"><span data-line=""><span style="color:#F47067">.docname</span><span style="color:#96D0FF"> {Radek Titěra - Projects And Articles}</span></span>
+<span data-line=""><span style="color:#F47067">.doctype</span><span style="color:#96D0FF"> {plain}</span></span>
+<span data-line=""><span style="color:#F47067">.doclang</span><span style="color:#96D0FF"> {English}</span></span>
+<span data-line=""><span style="color:#ADBAC7"> </span></span>
+<span data-line=""><span style="color:#F47067">.docauthors</span></span>
+<span data-line=""><span style="color:#ADBAC7">  - Radek Titěra</span></span>
+<span data-line=""><span style="color:#ADBAC7"> </span></span>
+<span data-line=""><span style="color:#F47067">.include</span><span style="color:#96D0FF"> {articles/articles.qd}</span></span>
+<span data-line=""><span style="color:#ADBAC7"> </span></span>
+<span data-line=""><span style="color:#F47067">.function</span><span style="color:#96D0FF"> {pageContent}</span></span>
+<span data-line=""><span style="color:#ADBAC7">  # Projects &#x26; Articles</span></span>
+<span data-line=""><span style="color:#ADBAC7"> </span></span>
+<span data-line=""><span style="color:#ADBAC7">  Welcome to my projects and articles site!</span></span>
+<span data-line=""><span style="color:#ADBAC7">  See my portfolio [here](</span><span style="color:#6CB6FF">https</span><span style="color:#ADBAC7">://titera.dev).</span></span>
+<span data-line=""><span style="color:#ADBAC7"> </span></span>
+<span data-line=""><span style="color:#ADBAC7">  ---</span></span>
+<span data-line=""><span style="color:#ADBAC7"> </span></span>
+<span data-line=""><span style="color:#F47067">  .foreach</span><span style="color:#96D0FF"> {</span><span style="color:#6CB6FF">.articlesData</span><span style="color:#96D0FF">}</span></span>
+<span data-line=""><span style="color:#ADBAC7">    slug </span><span style="color:#6CB6FF">article</span><span style="color:#ADBAC7">:</span></span>
+<span data-line=""><span style="color:#ADBAC7">        </span></span>
+<span data-line=""><span style="color:#ADBAC7">    ## </span><span style="color:#F47067">.get</span><span style="color:#96D0FF"> {title}</span><span style="color:#6CB6FF"> from</span><span style="color:#ADBAC7">:</span><span style="color:#96D0FF">{</span><span style="color:#6CB6FF">.article</span><span style="color:#96D0FF">}</span></span>
+<span data-line=""><span style="color:#F47067">    .image</span><span style="color:#96D0FF"> {/articles/</span><span style="color:#6CB6FF">.slug</span><span style="color:#96D0FF">/image/cover.png}</span><span style="color:#6CB6FF"> label</span><span style="color:#ADBAC7">:</span><span style="color:#96D0FF">{</span><span style="color:#6CB6FF">.slug</span><span style="color:#96D0FF">}</span><span style="color:#6CB6FF"> height</span><span style="color:#ADBAC7">:</span><span style="color:#96D0FF">{200}</span><span style="color:#6CB6FF"> mediastorage</span><span style="color:#ADBAC7">:</span><span style="color:#96D0FF">{false}</span></span>
+<span data-line=""><span style="color:#ADBAC7"> </span></span>
+<span data-line=""><span style="color:#F47067">    .row</span></span>
+<span data-line=""><span style="color:#ADBAC7">      **</span><span style="color:#6CB6FF">Published</span><span style="color:#ADBAC7">:** </span><span style="color:#F47067">.get</span><span style="color:#96D0FF"> {date}</span><span style="color:#6CB6FF"> from</span><span style="color:#ADBAC7">:</span><span style="color:#96D0FF">{</span><span style="color:#6CB6FF">.article</span><span style="color:#96D0FF">}</span></span>
+<span data-line=""><span style="color:#ADBAC7"> </span></span>
+<span data-line=""><span style="color:#F47067">      .subdocument</span><span style="color:#96D0FF"> {articles/</span><span style="color:#6CB6FF">.slug</span><span style="color:#96D0FF">/</span><span style="color:#6CB6FF">.slug</span><span style="color:#96D0FF">.qd}</span><span style="color:#6CB6FF"> label</span><span style="color:#ADBAC7">:</span><span style="color:#96D0FF">{Read}</span></span>
+<span data-line=""><span style="color:#ADBAC7">    </span></span>
+<span data-line=""><span style="color:#ADBAC7">    ---</span></span>
+<span data-line=""><span style="color:#ADBAC7"> </span></span>
+<span data-line=""><span style="color:#F47067">.include</span><span style="color:#96D0FF"> {template.qd}</span></span></code></pre></figure>
 <h2 id="links">Links</h2>
 <p>Go <a href="#math">Here</a> and <a href="https://example.com">There</a>.</p>
 <h2 id="lists">Lists</h2>

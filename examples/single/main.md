@@ -45,6 +45,42 @@ function hello() {
 }
 ```
 
+Custom quarkdown language:
+
+```quarkdown
+.docname {Radek Titěra - Projects And Articles}
+.doctype {plain}
+.doclang {English}
+ 
+.docauthors
+  - Radek Titěra
+ 
+.include {articles/articles.qd}
+ 
+.function {pageContent}
+  # Projects & Articles
+ 
+  Welcome to my projects and articles site!
+  See my portfolio [here](https://titera.dev).
+ 
+  ---
+ 
+  .foreach {.articlesData}
+    slug article:
+        
+    ## .get {title} from:{.article}
+    .image {/articles/.slug/image/cover.png} label:{.slug} height:{200} mediastorage:{false}
+ 
+    .row
+      **Published:** .get {date} from:{.article}
+ 
+      .subdocument {articles/.slug/.slug.qd} label:{Read}
+    
+    ---
+ 
+.include {template.qd}
+```
+
 ## Links
 
 Go [Here](#math) and [There](https://example.com).
