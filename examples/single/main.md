@@ -20,6 +20,12 @@ and the smallest planet in the Solar System.
 
 ## Code
 
+```ts {2} title="addNumbers.ts"
+export const addNumbers = (a: number, b: number) => {
+  return a + b;
+};
+```
+
 ```ts
 const a: number = add(2, 5);
 ```
@@ -42,6 +48,23 @@ function hello() {
 ## Links
 
 Go [Here](#math) and [There](https://example.com).
+
+## Lists
+
+- Item A
+- Item B
+- Item C
+
+1. First
+2. Second
+3. Third
+
+- Level 0
+  - Level 1
+    - Level 2
+    - 2
+      - 3
+- Level 0
 
 ## Highlighting
 

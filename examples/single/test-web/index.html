@@ -166,128 +166,184 @@
           font-family: 'JetBrains Mono NerdFont', monospace;
         }
 
-        /* Typography */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-          font-family: 'Didact Gothic', sans-serif;
-          @apply font-extrabold tracking-tight leading-tight my-2;
+        .article-content {
+          /* Typography */
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6 {
+            font-family: 'Didact Gothic', sans-serif;
+            @apply font-extrabold tracking-tight leading-tight my-2;
 
-          & + p {
-            @apply mt-4;
-          }
-        }
-
-        h1 {
-          @apply text-7xl;
-        }
-        h2 {
-          @apply text-4xl;
-        }
-        h3,
-        h4,
-        h5,
-        h6 {
-          @apply text-3xl;
-        }
-        p {
-          @apply font-normal leading-relaxed;
-        }
-
-        /* Links */
-        a {
-          @apply relative font-bold no-underline transition-colors duration-300 inline-block;
-          color: var(--color-ui-text);
-
-          &::before {
-            content: '';
-            @apply absolute bottom-0.5 left-0 -z-10 w-full h-2 transition-all duration-300 ease-in-out;
-            background-color: var(--color-accent-400);
-            opacity: 0.6;
+            & + p {
+              @apply mt-4;
+            }
           }
 
-          &:hover::before {
-            @apply bottom-0 h-full opacity-80;
+          h1 {
+            @apply text-7xl;
           }
-        }
-
-        /* rehype-pretty-code */
-        figure[data-rehype-pretty-code-figure] {
-          @apply my-8 flex justify-center;
-
-          pre {
-            @apply w-full max-w-3xl overflow-x-auto rounded-xl border border-ui-border py-4 shadow-lg;
+          h2 {
+            @apply text-4xl;
           }
-          code {
-            @apply inline-block text-sm leading-6;
-            counter-reset: line;
+          h3,
+          h4,
+          h5,
+          h6 {
+            @apply text-3xl;
+          }
+          p {
+            @apply font-normal leading-relaxed text-start my-2;
+          }
 
-            & > [data-line] {
-              @apply border-l-4 border-l-transparent px-4;
+          /* Links */
+          a {
+            @apply relative font-bold no-underline transition-colors duration-300 inline-block;
+            color: var(--color-ui-text);
+
+            &::before {
+              content: '';
+              @apply absolute bottom-0.5 left-0 -z-10 w-full h-2 transition-all duration-300 ease-in-out;
+              background-color: var(--color-accent-400);
+              opacity: 0.6;
+            }
+
+            &:hover::before {
+              @apply bottom-0 h-full opacity-80;
+            }
+          }
+
+          /* Multiline code blocks */
+          & > pre {
+            @apply my-8 overflow-x-auto rounded bg-bg-200 px-1.5 py-0.5;
+          }
+
+          /* Inline code blocks */
+          :not(pre) > code,
+          mjx-container {
+            @apply inline-block rounded bg-bg-200 px-1.5 py-0.5 text-secondary-600 transition-colors duration-200;
+          }
+
+          /* Writedown errors */
+          *[data-writedown-error] {
+            @apply block p-4 my-2 bg-red-800 rounded overflow-x-auto max-w-screen;
+          }
+
+          /* Lists */
+          & > ul,
+          & > ol {
+            @apply ps-8;
+          }
+
+          & > ul {
+            @apply list-none;
+          }
+
+          & > ol {
+            @apply list-decimal;
+          }
+
+          & > ul > li::marker {
+            content: '  ';
+          }
+
+          & li > ul,
+          & li > ol {
+            @apply ps-8;
+          }
+
+          & li > ul > li::marker {
+            content: '󰋙  ';
+          }
+
+          /* Blockquotes */
+          & > blockquote {
+            @apply my-6 border-l-4 border-primary-500 bg-primary-500/5 px-6 py-4 italic text-text-700 rounded-r-md;
+
+            p {
+              @apply my-0;
+            }
+          }
+
+          /* rehype-pretty-code */
+          & > figure[data-rehype-pretty-code-figure] {
+            @apply my-8 flex flex-col;
+
+            & > figcaption {
+              @apply ps-4 text-text-900;
+
               &::before {
-                counter-increment: line;
-                content: counter(line);
-                @apply mr-6 inline-block w-4 text-right text-text-400 opacity-50;
+                content: '# ';
+                font-weight: bold;
               }
             }
-            & > [data-highlighted-line] {
-              @apply border-l-primary-500 bg-primary-500/10;
+
+            pre {
+              @apply w-full overflow-x-auto rounded-xl py-4 shadow-lg;
             }
-          }
-        }
+            code {
+              @apply inline-block text-sm leading-6 lg:break-all lg:text-wrap;
+              counter-reset: line;
 
-        /* Inline code blocks */
-        :not(pre) > code,
-        mjx-container {
-          @apply inline-block rounded bg-bg-200 px-1.5 py-0.5 text-secondary-600 transition-colors duration-200;
-        }
-
-        /* rehype-mathjax */
-        figure[data-math-block] {
-          @apply my-8 flex justify-center;
-          mjx-container {
-            @apply flex! w-full max-w-3xl justify-center overflow-x-auto rounded-xl border border-ui-border py-4 shadow-lg;
-          }
-        }
-
-        /* Table of Contents */
-        ul[data-toc] {
-          @apply my-6 max-w-xs rounded-xl border border-ui-border bg-bg-100 p-6 shadow-sm list-none;
-
-          li {
-            @apply relative my-1;
-          }
-
-          /* reset custom link here */
-          a {
-            @apply block rounded-md px-2 py-1 text-sm text-text-400 hover:bg-primary-500/10 hover:text-primary-500;
-            &::before {
-              display: none;
+              & > [data-line] {
+                @apply border-l-4 border-l-transparent px-4;
+                &::before {
+                  counter-increment: line;
+                  content: counter(line);
+                  @apply mr-6 inline-block w-4 text-right opacity-50;
+                }
+              }
+              & > [data-highlighted-line] {
+                @apply border-l-primary-500 bg-primary-500/10;
+              }
             }
           }
 
-          ul {
-            @apply mt-1 ml-4 border-l border-ui-border pl-2 list-none;
+          /* rehype-mathjax */
+          & > figure[data-math-block] {
+            @apply my-8 flex justify-center;
+            mjx-container {
+              @apply flex! w-full justify-center overflow-x-auto rounded-xl border border-ui-border py-4 shadow-lg;
+            }
           }
 
-          & > li > p > a {
-            @apply font-bold text-text-950;
-          }
-        }
+          /* Table of Contents */
+          & > ul[data-toc] {
+            @apply my-6 max-w-xs rounded-xl border border-ui-border bg-bg-100 p-6 shadow-sm list-none;
 
-        /* Writedown errors */
-        *[data-writedown-error] {
-          @apply block p-4 my-2 bg-red-800 rounded overflow-x-auto max-w-screen;
+            li {
+              @apply relative my-1;
+
+              &::marker {
+                content: none;
+              }
+            }
+
+            /* reset custom link here */
+            a {
+              @apply block rounded-md px-2 py-1 text-sm text-text-400 hover:bg-primary-500/10 hover:text-primary-500;
+              &::before {
+                display: none;
+              }
+            }
+
+            ul {
+              @apply mt-1 ml-4 border-l border-ui-border pl-2 list-none;
+            }
+
+            & > li > p > a {
+              @apply font-bold text-text-950;
+            }
+          }
         }
       }
     </style>
   </head>
 
-  <body>
-    <div id="main" class="p-4"></div>
+  <body class="flex flex-col items-center">
+    <div id="main" class="article-content p-4 md:max-w-3/4"></div>
     <button class="fixed right-12 bottom-12" id="toggle-theme-btn">
       Toggle Theme
     </button>
