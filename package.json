@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/Rodak123/quarkup/issues"
   },
-  "homepage": "https://github.com/Rodak123/quarkup#readme".
+  "homepage": "https://github.com/Rodak123/quarkup#readme",
   "type": "module",
   "main": "src/main.ts",
   "bin": {
