@@ -26,7 +26,7 @@ This package and documentation is still work in progress.
 ### Examples
 
 - [Compile single project](./examples/single/README.md)
-- [Compile multiple projects](./examples/single/README.md)
+- [Compile multiple projects](./examples/multiple/README.md)
 
 ## Features
 
